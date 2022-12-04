@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IncludePath>D:\opensource\pcl_x64-windows\include\pcl-1.12;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\opensource\pcl_x64-windows\debug\lib;$(LibraryPath)</LibraryPath>
+    <_PropertySheetDisplayName>pcl_x64-windows-debug</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>pcl_commond.lib;pcl_featuresd.lib;pcl_filtersd.lib;pcl_iod.lib;pcl_io_plyd.lib;pcl_kdtreed.lib;pcl_keypointsd.lib;pcl_mld.lib;pcl_octreed.lib;pcl_outofcored.lib;pcl_peopled.lib;pcl_recognitiond.lib;pcl_registrationd.lib;pcl_sample_consensusd.lib;pcl_searchd.lib;pcl_segmentationd.lib;pcl_stereod.lib;pcl_surfaced.lib;pcl_trackingd.lib;pcl_visualizationd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

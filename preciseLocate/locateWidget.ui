@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>locateWidgetClass</class>
+ <widget class="QWidget" name="locateWidgetClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>288</width>
+    <height>698</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>locateWidget</string>
+  </property>
+  <widget class="QGroupBox" name="groupBoxRegisPara">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>231</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>配准算法及参数设置</string>
+   </property>
+   <widget class="QLabel" name="labelRegisMethod">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>配准算法：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMaximumIterations">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>最大迭代次数：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelEuclideanEpsilon">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>81</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>欧氏距离容差：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMaxCorrespondenceDistance">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>81</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>最大欧氏距离：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelTransformationEpsilon">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>矩阵转换容差：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelNormal">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>170</y>
+      <width>81</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>法向量：</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBoxRegisMethod">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numMaximumIterations">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>50</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="value">
+     <double>60.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numEuclideanEpsilon">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>80</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.001000000000000</double>
+    </property>
+    <property name="value">
+     <double>0.010000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numMaxCorrespondenceDistance">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>110</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.001000000000000</double>
+    </property>
+    <property name="value">
+     <double>0.010000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numTransformationEpsilon">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>140</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.001000000000000</double>
+    </property>
+    <property name="value">
+     <double>0.010000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numNormal">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>170</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.001000000000000</double>
+    </property>
+    <property name="value">
+     <double>0.010000000000000</double>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBoxInit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>231</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>准备工作</string>
+   </property>
+   <widget class="QPushButton" name="btnOpenCADPointCloud">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>读取CAD点云</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnCapturePointCloud">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>获取工件点云</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnFilter">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>点云滤波</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDownsample">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>70</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>点云降采样</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBoxRegisControl">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>370</y>
+     <width>231</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>点云配准</string>
+   </property>
+   <widget class="QPushButton" name="btnStartRegis">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始配准</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStopRegis">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>终止配准</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="logRegisStatus">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>191</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

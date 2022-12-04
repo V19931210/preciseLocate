@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>preciseLocateClass</class>
+ <widget class="QMainWindow" name="preciseLocateClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1307</width>
+    <height>913</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>preciseLocate</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="widgetLeft" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <layout class="QVBoxLayout" name="locateLayout"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="widgetRight" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QVBoxLayout" name="viewerLayout"/>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="logLayout"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1307</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>相机</string>
+    </property>
+    <addaction name="actionOpenCamera"/>
+    <addaction name="actionStartDepthStream"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpenCamera">
+   <property name="text">
+    <string>连接相机</string>
+   </property>
+  </action>
+  <action name="actionStartDepthStream">
+   <property name="text">
+    <string>开始深度流</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="preciseLocate.qrc"/>
+ </resources>
+ <connections/>
+</ui>
