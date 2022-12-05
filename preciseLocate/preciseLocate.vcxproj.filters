@@ -24,6 +24,9 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{44666930-0243-4747-8b04-011578c6aef3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PointCloudAlgorithm">
+      <UniqueIdentifier>{1bb927f7-689f-40c3-845e-22faf9380b9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="preciseLocate.qrc">
@@ -43,44 +46,71 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="locateWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="viewerWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="logWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Chishine.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="cameraPara.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistrationMethod.cpp">
+      <Filter>PointCloudAlgorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Filter.cpp">
+      <Filter>PointCloudAlgorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="registrationHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="locateWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="locateWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="viewerWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="logWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="cameraPara.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="locateWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="locateWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
     <QtUic Include="viewerWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="logWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="cameraPara.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="locateWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chishine.h">
       <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistrationMethod.h">
+      <Filter>PointCloudAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
+      <Filter>PointCloudAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="registrationHelper.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

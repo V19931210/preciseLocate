@@ -12,9 +12,13 @@ class logWidget : public QWidget
 	Q_OBJECT
 
 public:
-	logWidget(QWidget *parent = nullptr);
 	~logWidget();
+	static logWidget* GetInstance();
 
 private:
-	Ui::logWidgetClass *ui;
+	logWidget(QWidget* parent = nullptr);
+
+private:
+	Ui::logWidgetClass* ui;
+
 };

@@ -88,9 +88,9 @@ bool Chishine::getPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
 	tm* t_now = localtime(&t);
 	char now[50];
 	strftime(now, sizeof(now), "%Y-%m-%d-%H-%M-%S", t_now);
-	char path[] = "./";
-	char suffix[] = ".ply";
-	snprintf(path, 100, "%s%s", now, suffix);
+	std::string path = "./";
+	path += now;
+	path += ".ply";
 
 	//generate point cloud without color
 	pc.generatePoints((unsigned short*)frameDepth->getData(), frameDepth->getWidth(), frameDepth->getHeight(), scale, &intr, nullptr, nullptr);
@@ -108,5 +108,67 @@ bool Chishine::getPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
 		cloud->points[i].z = vertices[i].z;
 	}
 
+	return true;
+}
+
+bool Chishine::setAutoExposure(bool open) {
+	if (!isOpen()) {
+		return false;
+	}
+
+	ERROR_CODE ret;
+	PropertyExtension pros;
+	if (open) {
+		pros.autoExposureMode = AUTO_EXPOSURE_MODE_HIGH_QUALITY;
+	}
+	else {
+		pros.autoExposureMode = AUTO_EXPOSURE_MODE_CLOSE;
+	}
+	ret = camera->setPropertyExtension(PROPERTY_EXT_AUTO_EXPOSURE_MODE, pros);
+	if (ret != SUCCESS) {
+		return false;
+	}
+	return true;
+}
+
+bool Chishine::setExposure(float exposure) {
+	if (!isOpen()) {
+		return false;
+	}
+
+	ERROR_CODE ret;
+	ret = camera->setProperty(STREAM_TYPE_DEPTH, PROPERTY_EXPOSURE, exposure);
+	if (ret != SUCCESS) {
+		return false;
+	}
+	return true;
+}
+
+bool Chishine::setGain(float gain) {
+	if (!isOpen()) {
+		return false;
+	}
+
+	ERROR_CODE ret;
+	ret = camera->setProperty(STREAM_TYPE_DEPTH, PROPERTY_GAIN, gain);
+	if (ret != SUCCESS) {
+		return false;
+	}
+	return true;
+}
+
+bool Chishine::setDepthScale(float min, float max) {
+	if (!isOpen()) {
+		return false;
+	}
+
+	ERROR_CODE ret;
+	PropertyExtension depth_range;
+	depth_range.depthRange.min = min;
+	depth_range.depthRange.max = max;
+	ret = camera->setPropertyExtension(PROPERTY_EXT_DEPTH_RANGE, depth_range);
+	if (ret != SUCCESS) {
+		return false;
+	}
 	return true;
 }

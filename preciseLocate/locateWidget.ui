@@ -6,18 +6,70 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>288</width>
-    <height>698</height>
+    <width>257</width>
+    <height>732</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>locateWidget</string>
   </property>
+  <widget class="QGroupBox" name="groupBoxInit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>231</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>获取点云</string>
+   </property>
+   <widget class="QPushButton" name="btnOpenCADPointCloud">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>读取CAD点云</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnCapturePointCloud">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>获取工件点云</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBoxTestPointCloud">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>80</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>加载测试点云</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QGroupBox" name="groupBoxRegisPara">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
+     <y>400</y>
      <width>231</width>
      <height>211</height>
     </rect>
@@ -90,7 +142,7 @@
      <string>矩阵转换容差：</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelNormal">
+   <widget class="QLabel" name="labelNormalRadius">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -112,6 +164,16 @@
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>ICP</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>NICP</string>
+     </property>
+    </item>
    </widget>
    <widget class="QDoubleSpinBox" name="numMaximumIterations">
     <property name="geometry">
@@ -198,7 +260,7 @@
      <double>0.010000000000000</double>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="numNormal">
+   <widget class="QDoubleSpinBox" name="numNormalRadius">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -221,78 +283,13 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBoxInit">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>231</width>
-     <height>131</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>准备工作</string>
-   </property>
-   <widget class="QPushButton" name="btnOpenCADPointCloud">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>读取CAD点云</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnCapturePointCloud">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>20</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>获取工件点云</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnFilter">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>70</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>点云滤波</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnDownsample">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>70</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>点云降采样</string>
-    </property>
-   </widget>
-  </widget>
   <widget class="QGroupBox" name="groupBoxRegisControl">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>370</y>
+     <y>630</y>
      <width>231</width>
-     <height>101</height>
+     <height>81</height>
     </rect>
    </property>
    <property name="title">
@@ -311,27 +308,148 @@
      <string>开始配准</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnStopRegis">
+  </widget>
+  <widget class="QGroupBox" name="groupBoxPointCloudPreProcess">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>231</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>点云预处理</string>
+   </property>
+   <widget class="QPushButton" name="btnDownsample">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>20</y>
+      <x>20</x>
+      <y>160</y>
       <width>91</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>终止配准</string>
+     <string>点云降采样</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="logRegisStatus">
+   <widget class="QPushButton" name="btnFilter">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>70</y>
-      <width>191</width>
-      <height>20</height>
+      <y>80</y>
+      <width>91</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>点云滤波</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numFilterRadius">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <double>100.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.001000000000000</double>
+    </property>
+    <property name="value">
+     <double>5.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelRadius">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>半径：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMinNeighborsInRadius">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>最小近邻距离：</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numFilterMinNeighborsInRadius">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>50</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <double>100.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.001000000000000</double>
+    </property>
+    <property name="value">
+     <double>10.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="numDownsample">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>130</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <double>100.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.001000000000000</double>
+    </property>
+    <property name="value">
+     <double>2.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelDownsample">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>降采样率：</string>
     </property>
    </widget>
   </widget>
