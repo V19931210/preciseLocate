@@ -6,32 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1305</width>
-    <height>992</height>
+    <width>1123</width>
+    <height>871</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>preciseLocate</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
      <widget class="QSplitter" name="splitter_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
       <widget class="QWidget" name="widgetLeft" native="true">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>250</width>
-         <height>630</height>
-        </size>
        </property>
        <property name="maximumSize">
         <size>
@@ -60,7 +54,7 @@
            </layout>
           </widget>
           <widget class="QWidget" name="verticalLayoutWidget_2">
-           <layout class="QVBoxLayout" name="logLayout" stretch=""/>
+           <layout class="QVBoxLayout" name="logLayout"/>
           </widget>
          </widget>
         </item>
@@ -75,7 +69,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1305</width>
+     <width>1123</width>
      <height>23</height>
     </rect>
    </property>
@@ -86,6 +80,8 @@
     <addaction name="actionOpenCamera"/>
     <addaction name="actionStartDepthStream"/>
     <addaction name="actionEditPara"/>
+    <addaction name="actionStopDepthStream"/>
+    <addaction name="actionCloseCamera"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -103,6 +99,16 @@
   <action name="actionEditPara">
    <property name="text">
     <string>相机参数设置</string>
+   </property>
+  </action>
+  <action name="actionStopDepthStream">
+   <property name="text">
+    <string>停止深度流</string>
+   </property>
+  </action>
+  <action name="actionCloseCamera">
+   <property name="text">
+    <string>关闭相机</string>
    </property>
   </action>
  </widget>

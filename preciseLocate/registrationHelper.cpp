@@ -39,8 +39,8 @@ void Registrate::Compute(RegistrationClouds::Ptr clouds, const QMap<QString, QVa
 		}
 		VoxelGridFilter filter;
 
-		double source_downsample_size = params["Downsample"].toDouble();
-		double target_downsample_size = params["Downsample"].toDouble();
+		double source_downsample_size = params["DownsampleSource"].toDouble();
+		double target_downsample_size = params["DownsampleTarget"].toDouble();
 
 		filter.setInput(clouds->source_filtered_);
 		filter.setOutput(clouds->source_downsampled_);
@@ -52,25 +52,71 @@ void Registrate::Compute(RegistrationClouds::Ptr clouds, const QMap<QString, QVa
 		filter.setParams({ target_downsample_size });
 		filter.compute();
 	}
+	if (steps & 4) {
+		if (clouds->source_downsampled_->size() == 0 || clouds->target_downsampled_->size() == 0) {
+			return;
+		}
 
+		if (params["RegisMethodRough"].toString() == "FPCS") {
+			FPCSRegistration fpcs;
+			fpcs.setSourcePointCloud(clouds->source_downsampled_);
+			fpcs.setTargetPointCloud(clouds->target_downsampled_);
+			fpcs.setParameter({ params["FPCSOverlapRate"].toDouble(),
+								params["FPCSEpsilon"].toDouble(),
+								params["FPCSDelta"].toDouble(),
+								params["FPCSNumberOfThreads"].toDouble(),
+								params["FPCSMaxIterations"].toDouble(),
+								params["FPCSNumberOfSamples"].toDouble() });
+
+			fpcs.compute();
+			clouds->compute_matrix_ = fpcs.getComputeMatrix();
+		}
+		else if (params["RegisMethodRough"].toString() == "KFPCS") {
+			KFPCSRegistration kfpcs;
+			kfpcs.setSourcePointCloud(clouds->source_downsampled_);
+			kfpcs.setTargetPointCloud(clouds->target_downsampled_);
+			kfpcs.setParameter({ params["KFPCSOverlapRate"].toDouble(),
+								 params["KFPCSEpsilon"].toDouble(),
+								 params["KFPCSDelta"].toDouble(),
+								 params["KFPCSLambda"].toDouble(),
+								 params["KFPCSMaxIterations"].toDouble(),
+								 params["KFPCSNumberOfSamples"].toDouble(),
+								 params["KFPCSMaxAngleDiff"].toDouble() });
+			kfpcs.compute();
+			clouds->compute_matrix_ = kfpcs.getComputeMatrix();
+		}
+		else if (params["RegisMethodRough"].toString() == "SFPCS") {
+			SFPCSRegistration sfpcs;
+			sfpcs.setSourcePointCloud(clouds->source_downsampled_);
+			sfpcs.setTargetPointCloud(clouds->target_downsampled_);
+			sfpcs.setParameter({ params["SFPCSOverlapRate"].toDouble(),
+								 params["SFPCSEpsilon"].toDouble(),
+								 params["SFPCSNumberOfSamples"].toDouble(),
+								 params["SFPCSMaxTime"].toDouble(),
+								 params["SFPCSDelta"].toDouble(),
+								 params["SFPCSMaxIterations"].toDouble() });
+			sfpcs.compute();
+			clouds->compute_matrix_ = sfpcs.getComputeMatrix();
+		}
+	}
 	if (steps & 8) {
-		if (params["RegisMethod"].toString() == "ICP") {
+		if (params["RegisMethodPrecise"].toString() == "ICP") {
 			ICPRegistration icp;
 			icp.setSourcePointCloud(clouds->source_filtered_);
 			icp.setTargetPointCloud(clouds->target_filtered_);
-			icp.setParameter({ params["EuclideanEpsilon"].toDouble(),
-							   params["MaximumIterations"].toDouble() });
+			icp.setParameter({ params["ICPEulideanEpsilon"].toDouble(),
+							   params["ICPMaxIterations"].toDouble() });
 			icp.setRoughMatrix(clouds->compute_matrix_);
 			icp.compute();
 			clouds->compute_matrix_ = icp.getComputeMatrix();
 		}
-		else if (params["RegisMethod"].toString() == "NICP") {
+		else if (params["RegisMethodPrecise"].toString() == "NICP") {
 			pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> ne1;
 			ne1.setInputCloud(clouds->source_filtered_);
 			pcl::search::KdTree<pcl::PointXYZ>::Ptr tree1(new pcl::search::KdTree<pcl::PointXYZ>());
 			ne1.setSearchMethod(tree1);
 			pcl::PointCloud<pcl::Normal>::Ptr source_normals(new pcl::PointCloud<pcl::Normal>);
-			ne1.setRadiusSearch(params["NormalRadius"].toDouble());
+			ne1.setRadiusSearch(params["NICPNormalRadius"].toDouble());
 			ne1.compute(*source_normals);
 
 			pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> ne2;
@@ -78,7 +124,7 @@ void Registrate::Compute(RegistrationClouds::Ptr clouds, const QMap<QString, QVa
 			pcl::search::KdTree<pcl::PointXYZ>::Ptr tree2(new pcl::search::KdTree<pcl::PointXYZ>());
 			ne2.setSearchMethod(tree2);
 			pcl::PointCloud<pcl::Normal>::Ptr target_normals(new pcl::PointCloud<pcl::Normal>);
-			ne2.setRadiusSearch(params["NormalRadius"].toDouble());
+			ne2.setRadiusSearch(params["NICPNormalRadius"].toDouble());
 			ne2.compute(*target_normals);
 
 			NICPRegistration nicp;
@@ -86,8 +132,8 @@ void Registrate::Compute(RegistrationClouds::Ptr clouds, const QMap<QString, QVa
 			nicp.setTargetPointCloud(clouds->target_filtered_);
 			nicp.setSourceNormal(source_normals);
 			nicp.setTargetNormal(target_normals);
-			nicp.setParameter({ params["EuclideanEpsilon"].toDouble(),
-								params["MaximumIterations"].toDouble() });
+			nicp.setParameter({ params["NICPEulideanEpsilon"].toDouble(),
+								params["NICPMaxIterations"].toDouble() });
 			nicp.setRoughMatrix(clouds->compute_matrix_);
 			nicp.compute();
 			clouds->compute_matrix_ = nicp.getComputeMatrix();

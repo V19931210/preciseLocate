@@ -24,9 +24,11 @@ private:
 
 public:
 	//基本功能
+	bool isOpen();
 	bool openCamera();
 	bool startDepthStream();
-	bool isOpen();
+	bool stopDepthStream();
+	bool closeCamera();
 	bool getPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
 
 	//参数设置

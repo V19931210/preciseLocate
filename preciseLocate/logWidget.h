@@ -15,10 +15,13 @@ public:
 	~logWidget();
 	static logWidget* GetInstance();
 
+	//基本功能
+	void Log(QString str);
+	void LogWithTime(QString str);
+
 private:
 	logWidget(QWidget* parent = nullptr);
 
 private:
 	Ui::logWidgetClass* ui;
-
 };

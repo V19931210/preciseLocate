@@ -6,6 +6,7 @@
 #include "Chishine.h"
 #include "registrationHelper.h"
 #include "viewerWidget.h"
+#include "logWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class locateWidgetClass; };
@@ -24,19 +25,16 @@ private slots:
 	void on_btnCapturePointCloud_clicked();
 	void on_btnFilter_clicked();
 	void on_btnDownsample_clicked();
-	void on_btnStartRegis_clicked();
+	void on_btnStartRoughRegis_clicked();
+	void on_btnStartPreciseRegis_clicked();
 
-	void numFilterRadiusValueChanged(double value);
-	void numFilterMinNeighborsInRadiusValueChanged(double value);
-	void numDownsampleValueChanged(double value);
-	void numMaximumIterationsValueChanged(double value);
-	void numEuclideanEpsilonValueChanged(double value);
-	void numMaxCorrespondenceDistanceValueChanged(double value);
-	void numTransformationEpsilonValueChanged(double value);
-	void numNormalRadiusValueChanged(double value);
 	void comboBoxRegisMethodCurrentTextChanged(QString str);
+	void comboBoxRoughRegisMethodCurrentTextChanged(QString str);
+	void comboBoxPreciseRegisMethodCurrentTextChanged(QString str);
+
 
 private:
+	void setWidgetToRegisPara();
 	void initParaMap();
 	void connectParaMap();
 
@@ -46,6 +44,7 @@ private:
 	Chishine* camera;
 	viewerWidget* viewer;
 	RegistrationClouds::Ptr locate_clouds;
+	logWidget* log_widget;
 
 	QMap<QString, QVariant> para;
 };

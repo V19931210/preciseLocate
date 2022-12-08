@@ -3,6 +3,7 @@
 #include <QWidget>
 #include "ui_cameraPara.h"
 #include "Chishine.h"
+#include "logWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class cameraParaClass; };
@@ -26,4 +27,5 @@ private:
 	Ui::cameraParaClass* ui;
 
 	Chishine* camera;
+	logWidget* log_widget;
 };

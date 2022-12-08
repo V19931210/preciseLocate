@@ -50,6 +50,11 @@ private:
 	pcl::PointCloud<pcl::Normal>::Ptr target_normal_;
 };
 
+class SFPCSRegistration : public RegistrationMethod
+{
+public:
+	void compute();
+};
 
 class ICPRegistration : public RegistrationMethod
 {

@@ -25,21 +25,19 @@ preciseLocate::~preciseLocate() {
 
 void preciseLocate::on_actionOpenCamera_triggered() {
 	if (camera->openCamera()) {
-		//log操作的函数
+		log_widget->LogWithTime("Open Camera Success!");
 	}
 	else {
-		QMessageBox box;
-		box.warning(this, "Warning", "Open Camera Failed!");
+		log_widget->LogWithTime("Open Camera Failed!");
 	}
 }
 
 void preciseLocate::on_actionStartDepthStream_triggered() {
 	if (camera->startDepthStream()) {
-		//log操作的函数
+		log_widget->LogWithTime("Start DepthStream Success!");
 	}
 	else {
-		QMessageBox box;
-		box.warning(this, "Warning", "Start DepthStream Failed!");
+		log_widget->LogWithTime("Start DepthStream Failed!");
 	}
 }
 
@@ -47,4 +45,22 @@ void preciseLocate::on_actionEditPara_triggered() {
 	camera_para->show();
 }
 
+void preciseLocate::on_actionStopDepthStream_triggered() {
+	if (camera->stopDepthStream()) {
+		log_widget->LogWithTime("Stop DepthStream Success!");
+	}
+	else {
+		log_widget->LogWithTime("Stop DepthStream Failed!");
 
+	}
+}
+
+void preciseLocate::on_actionCloseCamera_triggered() {
+	if (camera->closeCamera()) {
+		log_widget->LogWithTime("Close Camera Success!");
+	}
+	else {
+		log_widget->LogWithTime("Close Camera Failed!");
+
+	}
+}

@@ -25,6 +25,8 @@ private slots:
 	void on_actionOpenCamera_triggered();
 	void on_actionStartDepthStream_triggered();
 	void on_actionEditPara_triggered();
+	void on_actionStopDepthStream_triggered();
+	void on_actionCloseCamera_triggered();
 
 private:
 	Ui::preciseLocateClass* ui;

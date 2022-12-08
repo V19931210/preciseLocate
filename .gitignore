@@ -1,1 +1,13 @@
 .vs
+x64/Debug/preciseLocate.pdb
+*.log
+*.exp
+*.tlog
+*.cbt
+*.stash
+*.db
+*.ipch
+*.recipe
+*.idx
+*.suo
+*.pdb

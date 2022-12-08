@@ -4,8 +4,12 @@ Chishine::Chishine() :is_open(false) {}
 
 Chishine::~Chishine() {
 	if (is_open) {
-		camera->disconnect();
+		closeCamera();
 	}
+}
+
+bool Chishine::isOpen() {
+	return false;
 }
 
 bool Chishine::openCamera() {
@@ -16,8 +20,7 @@ bool Chishine::openCamera() {
 		camera = cs::getCameraPtr();
 	}
 
-	ERROR_CODE ret;
-	ret = camera->connect();
+	ERROR_CODE ret = camera->connect();
 	if (ret == SUCCESS) {
 		is_open = true;
 		return true;
@@ -50,9 +53,35 @@ bool Chishine::startDepthStream() {
 	return false;
 }
 
-bool Chishine::isOpen() {
-	return false;
+bool  Chishine::stopDepthStream() {
+	if (!isOpen()) {
+		return true;
+	}
+
+	ERROR_CODE ret = camera->stopStream(STREAM_TYPE_DEPTH);
+	if (ret != SUCCESS) {
+		printf("camera stop depth stream failed(%d)!\n", ret);
+		return false;
+	}
+	return true;
 }
+
+bool Chishine::closeCamera() {
+	if (!isOpen()) {
+		return true;
+	}
+
+	ERROR_CODE ret = camera->disconnect();
+	if (ret != SUCCESS) {
+		printf("camera disconnect failed(%d)!\n", ret);
+		return false;
+	}
+	else {
+		is_open = false;
+		return true;
+	}
+}
+
 
 bool Chishine::getPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
 	if (!isOpen()) {

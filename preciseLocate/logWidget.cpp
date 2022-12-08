@@ -18,3 +18,15 @@ logWidget* logWidget::GetInstance() {
 	}
 	return instance;
 }
+
+void logWidget::Log(QString str) {
+	ui->logWidget->append(str);
+}
+
+void logWidget::LogWithTime(QString str) {
+	time_t t = time(nullptr);
+	tm* t_now = localtime(&t);
+	char now[50];
+	strftime(now, sizeof(now), "%H:%M:%S : ", t_now);
+	ui->logWidget->append(now + str);
+}

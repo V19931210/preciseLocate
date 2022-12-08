@@ -5,6 +5,7 @@
 #include <pcl/registration/ia_ransac.h>
 #include <pcl/registration/ia_fpcs.h>
 #include <pcl/registration/ia_kfpcs.h>
+#include <pcl/registration/super4pcs.h>
 #include <pcl/registration/icp.h>
 
 #include <opencv.hpp>
@@ -118,6 +119,23 @@ void KFPCSRegistration::setTargetNormal(pcl::PointCloud<pcl::Normal>::Ptr target
 	target_normal_ = target_normal;
 }
 
+void SFPCSRegistration::compute() {
+	pcl::Super4PCS<pcl::PointXYZ, pcl::PointXYZ> s4pcs;
+	s4pcs.setInputTarget(target_);
+	s4pcs.setInputSource(source_);
+	auto& options = s4pcs.getOptions();
+	options.randomSeed = time(0);
+	options.configureOverlap(parameters_[0]);
+	s4pcs.setEuclideanFitnessEpsilon(parameters_[1]);
+	options.sample_size = parameters_[2];
+	options.max_time_seconds = parameters_[3];
+	options.delta = parameters_[4];
+	s4pcs.setMaximumIterations(parameters_[5]);
+	pcl::PointCloud<pcl::PointXYZ>::Ptr result(new pcl::PointCloud<pcl::PointXYZ>());
+	s4pcs.align(*result);
+	compute_matrix_ = s4pcs.getFinalTransformation();
+	fit_score_ = s4pcs.getFitnessScore();
+}
 
 void ICPRegistration::compute() {
 	pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
